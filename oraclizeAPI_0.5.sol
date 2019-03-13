@@ -1,29 +1,29 @@
-/*
-
-ORACLIZE_API
-
-Copyright (c) 2015-2016 Oraclize SRL
-Copyright (c) 2016 Oraclize LTD
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
-
-*/
+/**
+ *
+ * ORACLIZE_API
+ *
+ * Copyright (c) 2015-2016 Oraclize SRL
+ * Copyright (c) 2016 Oraclize LTD
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ *
+ */
 pragma solidity >= 0.5.0 < 0.6.0; // Incompatible compiler version - please select a compiler within the stated pragma range, or use a different version of the oraclizeAPI!
 
 // Dummy contract only used to emit to end-user they are using wrong solc
@@ -62,35 +62,35 @@ contract OraclizeI {
 contract OraclizeAddrResolverI {
     function getAddress() public returns (address _address);
 }
-/*
-
-Begin solidity-cborutils
-
-https://github.com/smartcontractkit/solidity-cborutils
-
-MIT License
-
-Copyright (c) 2018 SmartContract ChainLink, Ltd.
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-
-*/
+/**
+ *
+ * Begin solidity-cborutils
+ *
+ * https://github.com/smartcontractkit/solidity-cborutils
+ *
+ * MIT License
+ *
+ * Copyright (c) 2018 SmartContract ChainLink, Ltd.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ *
+ */
 library Buffer {
 
     struct buffer {
@@ -125,13 +125,13 @@ library Buffer {
         return _b;
     }
     /**
-      * @dev Appends a byte array to the end of the buffer. Resizes if doing so
-      *      would exceed the capacity of the buffer.
-      * @param _buf The buffer to append to.
-      * @param _data The data to append.
-      * @return The original buffer.
-      *
-      */
+     * @dev Appends a byte array to the end of the buffer. Resizes if doing so
+     *      would exceed the capacity of the buffer.
+     * @param _buf The buffer to append to.
+     * @param _data The data to append.
+     * @return The original buffer.
+     *
+     */
     function append(buffer memory _buf, bytes memory _data) internal pure returns (buffer memory _buffer) {
         if (_data.length + _buf.buf.length > _buf.capacity) {
             resize(_buf, max(_buf.capacity, _data.length) * 2);
@@ -275,11 +275,11 @@ library CBOR {
         encodeIndefiniteLengthType(_buf, MAJOR_TYPE_CONTENT_FREE);
     }
 }
-/*
-
-End solidity-cborutils
-
-*/
+/**
+ *
+ * End solidity-cborutils
+ *
+ */
 contract usingOraclize {
 
     using CBOR for Buffer.buffer;
@@ -324,7 +324,7 @@ contract usingOraclize {
         bytes memory _proof
     )
     {
-        // RandomDS Proof Step 1: The prefix has to match 'LP\x01' (Ledger Proof version 1)
+        // Note: RandomDS Proof Step 1: The prefix has to match 'LP\x01' (Ledger Proof version 1)
         require((_proof[0] == "L") && (_proof[1] == "P") && (uint8(_proof[2]) == uint8(1)));
         bool proofVerified = oraclize_randomDS_proofVerify__main(_proof, _queryId, bytes(_result), oraclize_getNetworkName());
         require(proofVerified);
@@ -338,7 +338,7 @@ contract usingOraclize {
         returns (bool _networkSet)
     {
       return oraclize_setNetwork();
-      _networkID; // silence the warning and remain backwards compatible
+      _networkID; // Note: silences the warning and remain backwards compatible
     }
 
     function oraclize_setNetworkName(
@@ -361,22 +361,22 @@ contract usingOraclize {
         internal
         returns (bool _networkSet)
     {
-        if (getCodeSize(0x1d3B2638a7cC9f2CB3D298A3DA7a90B67E5506ed) > 0) { //mainnet
+        if (getCodeSize(0x1d3B2638a7cC9f2CB3D298A3DA7a90B67E5506ed) > 0) { // Mainnet
             OAR = OraclizeAddrResolverI(0x1d3B2638a7cC9f2CB3D298A3DA7a90B67E5506ed);
             oraclize_setNetworkName("eth_mainnet");
             return true;
         }
-        if (getCodeSize(0xc03A2615D5efaf5F49F60B7BB6583eaec212fdf1) > 0) { //ropsten testnet
+        if (getCodeSize(0xc03A2615D5efaf5F49F60B7BB6583eaec212fdf1) > 0) { // Ropsten testnet
             OAR = OraclizeAddrResolverI(0xc03A2615D5efaf5F49F60B7BB6583eaec212fdf1);
             oraclize_setNetworkName("eth_ropsten3");
             return true;
         }
-        if (getCodeSize(0xB7A07BcF2Ba2f2703b24C0691b5278999C59AC7e) > 0) { //kovan testnet
+        if (getCodeSize(0xB7A07BcF2Ba2f2703b24C0691b5278999C59AC7e) > 0) { // Kovan testnet
             OAR = OraclizeAddrResolverI(0xB7A07BcF2Ba2f2703b24C0691b5278999C59AC7e);
             oraclize_setNetworkName("eth_kovan");
             return true;
         }
-        if (getCodeSize(0x146500cfd35B22E4A392Fe0aDc06De1a1368Ed48) > 0) { //rinkeby testnet
+        if (getCodeSize(0x146500cfd35B22E4A392Fe0aDc06De1a1368Ed48) > 0) { // Rinkeby testnet
             OAR = OraclizeAddrResolverI(0x146500cfd35B22E4A392Fe0aDc06De1a1368Ed48);
             oraclize_setNetworkName("eth_rinkeby");
             return true;
@@ -386,15 +386,15 @@ contract usingOraclize {
             oraclize_setNetworkName("eth_goerli");
             return true;
         }
-        if (getCodeSize(0x6f485C8BF6fc43eA212E93BBF8ce046C7f1cb475) > 0) { //ethereum-bridge
+        if (getCodeSize(0x6f485C8BF6fc43eA212E93BBF8ce046C7f1cb475) > 0) { // Ethereum-bridge
             OAR = OraclizeAddrResolverI(0x6f485C8BF6fc43eA212E93BBF8ce046C7f1cb475);
             return true;
         }
-        if (getCodeSize(0x20e12A1F859B3FeaE5Fb2A0A32C18F5a65555bBF) > 0) { //ether.camp ide
+        if (getCodeSize(0x20e12A1F859B3FeaE5Fb2A0A32C18F5a65555bBF) > 0) { // Ether.camp ide
             OAR = OraclizeAddrResolverI(0x20e12A1F859B3FeaE5Fb2A0A32C18F5a65555bBF);
             return true;
         }
-        if (getCodeSize(0x51efaF4c8B3C9AfBD5aB9F4bbC82784Ab6ef8fAA) > 0) { //browser-solidity
+        if (getCodeSize(0x51efaF4c8B3C9AfBD5aB9F4bbC82784Ab6ef8fAA) > 0) { // Browser-solidity
             OAR = OraclizeAddrResolverI(0x51efaF4c8B3C9AfBD5aB9F4bbC82784Ab6ef8fAA);
             return true;
         }
@@ -418,7 +418,7 @@ contract usingOraclize {
         public
     {
         return;
-        _myid; _result; _proof; // Silence compiler warnings
+        _myid; _result; _proof; // Note: Silences compiler warnings
     }
 
     function oraclize_getPrice(
@@ -601,7 +601,7 @@ contract usingOraclize {
     {
         uint256 price = oraclize.getPrice(_datasource);
         if (price > 1 ether + tx.gasprice * 200000) {
-            return 0; // Unexpectedly high price
+            return 0; // Note: Return 0 due to unexpectedly high price
         }
         return oraclize.query.value(price)(0, _datasource, _arg);
     }
@@ -617,7 +617,7 @@ contract usingOraclize {
     {
         uint256 price = oraclize.getPrice(_datasource);
         if (price > 1 ether + tx.gasprice * 200000) {
-            return 0; // Unexpectedly high price
+            return 0; // Note: Return 0 due to unexpectedly high price
         }
         return oraclize.query.value(price)(_timestamp, _datasource, _arg);
     }
@@ -634,7 +634,7 @@ contract usingOraclize {
     {
         uint256 price = oraclize.getPrice(_datasource,_gasLimit);
         if (price > 1 ether + tx.gasprice * _gasLimit) {
-            return 0; // Unexpectedly high price
+            return 0; // Note: Return 0 due to unexpectedly high price
         }
         return oraclize.query_withGasLimit.value(price)(_timestamp, _datasource, _arg, _gasLimit);
     }
@@ -650,7 +650,7 @@ contract usingOraclize {
     {
         uint256 price = oraclize.getPrice(_datasource, _gasLimit);
         if (price > 1 ether + tx.gasprice * _gasLimit) {
-           return 0; // Unexpectedly high price
+           return 0; // Note: Return 0 due to unexpectedly high price
         }
         return oraclize.query_withGasLimit.value(price)(0, _datasource, _arg, _gasLimit);
     }
@@ -666,7 +666,7 @@ contract usingOraclize {
     {
         uint256 price = oraclize.getPrice(_datasource);
         if (price > 1 ether + tx.gasprice * 200000) {
-            return 0; // Unexpectedly high price
+            return 0; // Note: Return 0 due to unexpectedly high price
         }
         return oraclize.query2.value(price)(0, _datasource, _arg1, _arg2);
     }
@@ -683,7 +683,7 @@ contract usingOraclize {
     {
         uint256 price = oraclize.getPrice(_datasource);
         if (price > 1 ether + tx.gasprice * 200000) {
-            return 0; // Unexpectedly high price
+            return 0; // Note: Return 0 due to unexpectedly high price
         }
         return oraclize.query2.value(price)(_timestamp, _datasource, _arg1, _arg2);
     }
@@ -701,7 +701,7 @@ contract usingOraclize {
     {
         uint256 price = oraclize.getPrice(_datasource, _gasLimit);
         if (price > 1 ether + tx.gasprice * _gasLimit) {
-            return 0; // Unexpectedly high price
+            return 0; // Note: Return 0 due to unexpectedly high price
         }
         return oraclize.query2_withGasLimit.value(price)(_timestamp, _datasource, _arg1, _arg2, _gasLimit);
     }
@@ -718,7 +718,7 @@ contract usingOraclize {
     {
         uint256 price = oraclize.getPrice(_datasource, _gasLimit);
         if (price > 1 ether + tx.gasprice * _gasLimit) {
-            return 0; // Unexpectedly high price
+            return 0; // Note: Return 0 due to unexpectedly high price
         }
         return oraclize.query2_withGasLimit.value(price)(0, _datasource, _arg1, _arg2, _gasLimit);
     }
@@ -733,7 +733,7 @@ contract usingOraclize {
     {
         uint256 price = oraclize.getPrice(_datasource);
         if (price > 1 ether + tx.gasprice * 200000) {
-            return 0; // Unexpectedly high price
+            return 0; // Note: Return 0 due to unexpectedly high price
         }
         bytes memory args = stra2cbor(_argN);
         return oraclize.queryN.value(price)(0, _datasource, args);
@@ -750,7 +750,7 @@ contract usingOraclize {
     {
         uint256 price = oraclize.getPrice(_datasource);
         if (price > 1 ether + tx.gasprice * 200000) {
-            return 0; // Unexpectedly high price
+            return 0; // Note: Return 0 due to unexpectedly high price
         }
         bytes memory args = stra2cbor(_argN);
         return oraclize.queryN.value(price)(_timestamp, _datasource, args);
@@ -768,7 +768,7 @@ contract usingOraclize {
     {
         uint256 price = oraclize.getPrice(_datasource, _gasLimit);
         if (price > 1 ether + tx.gasprice * _gasLimit) {
-            return 0; // Unexpectedly high price
+            return 0; // Note: Return 0 due to unexpectedly high price
         }
         bytes memory args = stra2cbor(_argN);
         return oraclize.queryN_withGasLimit.value(price)(_timestamp, _datasource, args, _gasLimit);
@@ -785,7 +785,7 @@ contract usingOraclize {
     {
         uint256 price = oraclize.getPrice(_datasource, _gasLimit);
         if (price > 1 ether + tx.gasprice * _gasLimit) {
-            return 0; // Unexpectedly high price
+            return 0; // Note: Return 0 due to unexpectedly high price
         }
         bytes memory args = stra2cbor(_argN);
         return oraclize.queryN_withGasLimit.value(price)(0, _datasource, args, _gasLimit);
@@ -1121,7 +1121,7 @@ contract usingOraclize {
     {
         uint256 price = oraclize.getPrice(_datasource);
         if (price > 1 ether + tx.gasprice * 200000) {
-            return 0; // Unexpectedly high price
+            return 0; // Note: Return 0 due to unexpectedly high price
         }
         bytes memory args = ba2cbor(_argN);
         return oraclize.queryN.value(price)(0, _datasource, args);
@@ -1138,7 +1138,7 @@ contract usingOraclize {
     {
         uint256 price = oraclize.getPrice(_datasource);
         if (price > 1 ether + tx.gasprice * 200000) {
-            return 0; // Unexpectedly high price
+            return 0; // Note: Return 0 due to unexpectedly high price
         }
         bytes memory args = ba2cbor(_argN);
         return oraclize.queryN.value(price)(_timestamp, _datasource, args);
@@ -1156,7 +1156,7 @@ contract usingOraclize {
     {
         uint256 price = oraclize.getPrice(_datasource, _gasLimit);
         if (price > 1 ether + tx.gasprice * _gasLimit) {
-            return 0; // Unexpectedly high price
+            return 0; // Note: Return 0 due to unexpectedly high price
         }
         bytes memory args = ba2cbor(_argN);
         return oraclize.queryN_withGasLimit.value(price)(_timestamp, _datasource, args, _gasLimit);
@@ -1173,7 +1173,7 @@ contract usingOraclize {
     {
         uint256 price = oraclize.getPrice(_datasource, _gasLimit);
         if (price > 1 ether + tx.gasprice * _gasLimit) {
-            return 0; // Unexpectedly high price
+            return 0; // Note: Return 0 due to unexpectedly high price
         }
         bytes memory args = ba2cbor(_argN);
         return oraclize.queryN_withGasLimit.value(price)(0, _datasource, args, _gasLimit);
@@ -1934,7 +1934,7 @@ contract usingOraclize {
         returns (bytes32 _queryId)
     {
         require((_nbytes > 0) && (_nbytes <= 32));
-        _delay *= 10; // Convert from seconds to ledger timer ticks
+        _delay *= 10; // Note: Convert from seconds to ledger timer ticks
         bytes memory nbytes = new bytes(1);
         nbytes[0] = byte(uint8(_nbytes));
         bytes memory unonce = new bytes(32);
@@ -1942,11 +1942,13 @@ contract usingOraclize {
         bytes32 sessionKeyHash_bytes32 = oraclize_randomDS_getSessionPubKeyHash();
         assembly {
             mstore(unonce, 0x20)
-            /*
-             The following variables can be relaxed.
-             Check the relaxed random contract at https://github.com/oraclize/ethereum-examples
-             for an idea on how to override and replace commit hash variables.
-            */
+            /**
+             *
+             * The following variables can be relaxed.
+             * Check the relaxed random contract at https://github.com/oraclize/ethereum-examples
+             * for an idea on how to override and replace commit hash variables.
+             *
+             */
             mstore(add(unonce, 0x20), xor(blockhash(sub(number, 1)), xor(coinbase, timestamp)))
             mstore(sessionKeyHash, 0x20)
             mstore(add(sessionKeyHash, 0x20), sessionKeyHash_bytes32)
@@ -2023,7 +2025,7 @@ contract usingOraclize {
         returns (bool _proofVerified)
     {
         bool sigok;
-        // Random DS Proof Step 6: Verify the attestation signature, APPKEY1 must sign the sessionKey from the correct ledger app (CODEHASH)
+        // Note: Random DS Proof Step 6: Verify the attestation signature, APPKEY1 must sign the sessionKey from the correct ledger app (CODEHASH)
         bytes memory sig2 = new bytes(uint(uint8(_proof[_sig2offset + 1])) + 2);
         copyBytes(_proof, _sig2offset, sig2.length, sig2, 0);
         bytes memory appkey1_pubkey = new bytes(64);
@@ -2037,7 +2039,7 @@ contract usingOraclize {
         if (!sigok) {
             return false;
         }
-        // Random DS Proof Step 7: Verify the APPKEY1 provenance (must be signed by Ledger)
+        // Note: Random DS Proof Step 7: Verify the APPKEY1 provenance (must be signed by Ledger)
         bytes memory LEDGERKEY = hex"7fb956469c5c9b89840d55b43537e66a98dd4811ea0a27224272c2e5622911e8537a2f8e86a46baec82864e98dd01e9ccc2f8bc5dfc9cbe5a91a290498dd96e4";
         bytes memory tosign3 = new bytes(1 + 65);
         tosign3[0] = 0xFE;
@@ -2056,7 +2058,7 @@ contract usingOraclize {
         internal
         returns (uint8 _returnCode)
     {
-        // Random DS Proof Step 1: The prefix has to match 'LP\x01' (Ledger Proof version 1)
+        // Note: Random DS Proof Step 1: The prefix has to match 'LP\x01' (Ledger Proof version 1)
         if ((_proof[0] != "L") || (_proof[1] != "P") || (uint8(_proof[2]) != uint8(1))) {
             return 1;
         }
@@ -2095,7 +2097,7 @@ contract usingOraclize {
         internal
         returns (bool _proofVerified)
     {
-        // Random DS Proof Step 2: The unique keyhash has to match with the sha256 of (context name + _queryId)
+        // Note: Random DS Proof Step 2: The unique keyhash has to match with the sha256 of (context name + _queryId)
         uint256 ledgerProofLength = 3 + 65 + (uint(uint8(_proof[3 + 65 + 1])) + 2) + 32;
         bytes memory keyhash = new bytes(32);
         copyBytes(_proof, ledgerProofLength, 32, keyhash, 0);
@@ -2104,12 +2106,12 @@ contract usingOraclize {
         }
         bytes memory sig1 = new bytes(uint(uint8(_proof[ledgerProofLength + (32 + 8 + 1 + 32) + 1])) + 2);
         copyBytes(_proof, ledgerProofLength + (32 + 8 + 1 + 32), sig1.length, sig1, 0);
-        // Random DS Proof Step 3: We assume sig1 is valid (it will be verified during step 5) and we verify if '_result' is the _prefix of sha256(sig1)
+        // Note: Random DS Proof Step 3: We assume sig1 is valid (it will be verified during step 5) and we verify if '_result' is the _prefix of sha256(sig1)
         if (!matchBytes32Prefix(sha256(sig1), _result, uint(uint8(_proof[ledgerProofLength + 32 + 8])))) {
             return false;
         }
-        // Random DS Proof Step 4: Commitment match verification, keccak256(delay, nbytes, unonce, sessionKeyHash) == commitment in storage.
-        // This is to verify that the computed args match with the ones specified in the query.
+        // Note: Random DS Proof Step 4: Commitment match verification, keccak256(delay, nbytes, unonce, sessionKeyHash) == commitment in storage.
+        // Note: This is to verify that the computed args match with the ones specified in the query.
         bytes memory commitmentSlice1 = new bytes(8 + 1 + 32);
         copyBytes(_proof, ledgerProofLength + 32, 8 + 1 + 32, commitmentSlice1, 0);
         bytes memory sessionPubkey = new bytes(64);
@@ -2119,21 +2121,24 @@ contract usingOraclize {
         if (oraclize_randomDS_args[_queryId] == keccak256(abi.encodePacked(commitmentSlice1, sessionPubkeyHash))) { //unonce, nbytes and sessionKeyHash match
             delete oraclize_randomDS_args[_queryId];
         } else return false;
-        // Random DS Proof Step 5: Validity verification for sig1 (keyhash and args signed with the sessionKey)
+        // Note: Random DS Proof Step 5: Validity verification for sig1 (keyhash and args signed with the sessionKey)
         bytes memory tosign1 = new bytes(32 + 8 + 1 + 32);
         copyBytes(_proof, ledgerProofLength, 32 + 8 + 1 + 32, tosign1, 0);
         if (!verifySig(sha256(tosign1), sig1, sessionPubkey)) {
             return false;
         }
-        // Verify if sessionPubkeyHash was verified already, if not.. let's do it!
+        // Note: Verify if sessionPubkeyHash was verified already, if not.. let's do it!
         if (!oraclize_randomDS_sessionKeysHashVerified[sessionPubkeyHash]) {
             oraclize_randomDS_sessionKeysHashVerified[sessionPubkeyHash] = oraclize_randomDS_proofVerify__sessionKeyValidity(_proof, sig2offset);
         }
         return oraclize_randomDS_sessionKeysHashVerified[sessionPubkeyHash];
     }
-    /*
-     The following function has been written by Alex Beregszaszi (@axic), use it under the terms of the MIT license
-    */
+    /**
+     *
+     * The following function has been written by Alex Beregszaszi (@ axic)
+     * Use it under the terms of the MIT license
+     *
+     */
     function copyBytes(
         bytes memory _from,
         uint256 _fromOffset,
@@ -2146,8 +2151,8 @@ contract usingOraclize {
         returns (bytes memory _copiedBytes)
     {
         uint256 minLength = _length + _toOffset;
-        require(_to.length >= minLength); // Buffer too small. Should be a better way?
-        uint256 i = 32 + _fromOffset; // NOTE: the offset 32 is added to skip the `size` field of both bytes variables
+        require(_to.length >= minLength); // Note: Buffer too small. Should be a better way?
+        uint256 i = 32 + _fromOffset; // Note: the offset 32 is added to skip the `size` field of both bytes variables
         uint256 j = 32 + _toOffset;
         while (i < (32 + _fromOffset + _length)) {
             assembly {
@@ -2159,10 +2164,13 @@ contract usingOraclize {
         }
         return _to;
     }
-    /*
-     The following function has been written by Alex Beregszaszi (@axic), use it under the terms of the MIT license
-     Duplicate Solidity's ecrecover, but catching the CALL return value
-    */
+    /**
+     *
+     * The following function has been written by Alex Beregszaszi (@ axic)
+     * Use it under the terms of the MIT license
+     * It duplicates Solidity's ecrecover, but catching the CALL return value
+     *
+     */
     function safer_ecrecover(
         bytes32 _hash,
         uint8 _v,
@@ -2172,14 +2180,16 @@ contract usingOraclize {
         internal
         returns (bool _success, address _recoveredAddress)
     {
-        /*
-         We do our own memory management here. Solidity uses memory offset
-         0x40 to store the current end of memory. We write past it (as
-         writes are memory extensions), but don't update the offset so
-         Solidity will reuse it. The memory used here is only needed for
-         this context.
-         FIXME: inline assembly can't access return values
-        */
+        /**
+         *
+         * We do our own memory management here. Solidity uses memory offset
+         * 0x40 to store the current end of memory. We write past it (as
+         * writes are memory extensions), but don't update the offset so
+         * Solidity will reuse it. The memory used here is only needed for
+         * this context.
+         * FIXME: inline assembly can't access return values
+         *
+         */
         bool ret;
         address addr;
         assembly {
@@ -2193,9 +2203,11 @@ contract usingOraclize {
         }
         return (ret, addr);
     }
-    /*
-     The following function has been written by Alex Beregszaszi (@axic), use it under the terms of the MIT license
-    */
+    /**
+     *
+     * The following function has been written by Alex Beregszaszi (@ axic), use it under the terms of the MIT license
+     *
+     */
     function ecrecovery(
         bytes32 _hash,
         bytes memory _sig
@@ -2209,33 +2221,41 @@ contract usingOraclize {
         if (_sig.length != 65) {
             return (false, address(0));
         }
-        /*
-         The signature format is a compact form of:
-           {bytes32 r}{bytes32 s}{uint8 v}
-         Compact means, uint8 is not padded to 32 bytes.
-        */
+        /**
+         *
+         * The signature format is a compact form of:
+         * {bytes32 r}{bytes32 s}{uint8 v}
+         * Compact means, uint8 is not padded to 32 bytes.
+         *
+         */
         assembly {
             r := mload(add(_sig, 32))
             s := mload(add(_sig, 64))
-            /*
-             Here we are loading the last 32 bytes. We exploit the fact that
-             'mload' will pad with zeroes if we overread.
-             There is no 'mload8' to do this, but that would be nicer.
-            */
+            /**
+             *
+             * Here we are loading the last 32 bytes. We exploit the fact that
+             * 'mload' will pad with zeroes if we overread.
+             * There is no 'mload8' to do this, but that would be nicer.
+             *
+             */
             v := byte(0, mload(add(_sig, 96)))
-            /*
-              Alternative solution:
-              'byte' is not working due to the Solidity parser, so lets
-              use the second best option, 'and'
-              v := and(mload(add(_sig, 65)), 255)
-            */
+            /**
+             *
+             * Alternative solution:
+             * 'byte' is not working due to the Solidity parser, so lets
+             * use the second best option, 'and'
+             * v := and(mload(add(_sig, 65)), 255)
+             *
+             */
         }
-        /*
-         albeit non-transactional signatures are not specified by the YP, one would expect it
-         to match the YP range of [27, 28]
-         geth uses [0, 1] and some clients have followed. This might change, see:
-         https://github.com/ethereum/go-ethereum/issues/2053
-        */
+        /**
+         *
+         * albeit non-transactional signatures are not specified by the YP, one would expect it
+         * to match the YP range of [27, 28]
+         * geth uses [0, 1] and some clients have followed. This might change, see:
+         * https://github.com/ethereum/go-ethereum/issues/2053
+         *
+         */
         if (v < 27) {
             v += 27;
         }
@@ -2256,5 +2276,7 @@ contract usingOraclize {
     }
 }
 /**
+ *
  * END ORACLIZE_API
+ *
  */
