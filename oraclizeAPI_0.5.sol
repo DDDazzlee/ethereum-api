@@ -1347,7 +1347,9 @@ contract usingOraclize {
         internal
         returns (bytes32 _id)
     {
-        uint256 price = oraclize.getPrice(_datasource);
+        uint256 price = oraclize.addressCustomPaymentToken(address(this)) == address(0)
+            ? oraclize.getPrice(_datasource)
+            : 0;
         if (price > 1 ether + tx.gasprice * 200000) {
             return 0; // Note: Return 0 due to unexpectedly high price
         }
@@ -1373,7 +1375,9 @@ contract usingOraclize {
         internal
         returns (bytes32 _id)
     {
-        uint256 price = oraclize.getPrice(_datasource);
+        uint256 price = oraclize.addressCustomPaymentToken(address(this)) == address(0)
+            ? oraclize.getPrice(_datasource)
+            : 0;
         if (price > 1 ether + tx.gasprice * 200000) {
             return 0; // Note: Return 0 due to unexpectedly high price
         }
@@ -1400,7 +1404,9 @@ contract usingOraclize {
         internal
         returns (bytes32 _id)
     {
-        uint256 price = oraclize.getPrice(_datasource);
+        uint256 price = oraclize.addressCustomPaymentToken(address(this)) == address(0)
+            ? oraclize.getPrice(_datasource)
+            : 0;
         if (price > 1 ether + tx.gasprice * 200000) {
             return 0; // Note: Return 0 due to unexpectedly high price
         }
@@ -1427,7 +1433,9 @@ contract usingOraclize {
         internal
         returns (bytes32 _id)
     {
-        uint256 price = oraclize.getPrice(_datasource);
+        uint256 price = oraclize.addressCustomPaymentToken(address(this)) == address(0)
+            ? oraclize.getPrice(_datasource)
+            : 0;
         if (price > 1 ether + tx.gasprice * 200000) {
             return 0; // Note: Return 0 due to unexpectedly high price
         }
@@ -1455,7 +1463,9 @@ contract usingOraclize {
         internal
         returns (bytes32 _id)
     {
-        uint256 price = oraclize.getPrice(_datasource,_gasLimit);
+        uint256 price = oraclize.addressCustomPaymentToken(address(this)) == address(0)
+            ? oraclize.getPrice(_datasource,_gasLimit)
+            : 0;
         if (price > 1 ether + tx.gasprice * _gasLimit) {
             return 0; // Note: Return 0 due to unexpectedly high price
         }
@@ -1484,7 +1494,9 @@ contract usingOraclize {
         internal
         returns (bytes32 _id)
     {
-        uint256 price = oraclize.getPrice(_datasource,_gasLimit);
+        uint256 price = oraclize.addressCustomPaymentToken(address(this)) == address(0)
+            ? oraclize.getPrice(_datasource,_gasLimit)
+            : 0;
         if (price > 1 ether + tx.gasprice * _gasLimit) {
             return 0; // Note: Return 0 due to unexpectedly high price
         }
@@ -1512,7 +1524,9 @@ contract usingOraclize {
         internal
         returns (bytes32 _id)
     {
-        uint256 price = oraclize.getPrice(_datasource, _gasLimit);
+        uint256 price = oraclize.addressCustomPaymentToken(address(this)) == address(0)
+            ? oraclize.getPrice(_datasource, _gasLimit)
+            : 0;
         if (price > 1 ether + tx.gasprice * _gasLimit) {
            return 0; // Note: Return 0 due to unexpectedly high price
         }
@@ -1540,7 +1554,9 @@ contract usingOraclize {
         internal
         returns (bytes32 _id)
     {
-        uint256 price = oraclize.getPrice(_datasource, _gasLimit);
+        uint256 price = oraclize.addressCustomPaymentToken(address(this)) == address(0)
+            ? oraclize.getPrice(_datasource, _gasLimit)
+            : 0;
         if (price > 1 ether + tx.gasprice * _gasLimit) {
            return 0; // Note: Return 0 due to unexpectedly high price
         }
@@ -1568,7 +1584,9 @@ contract usingOraclize {
         internal
         returns (bytes32 _id)
     {
-        uint256 price = oraclize.getPrice(_datasource);
+        uint256 price = oraclize.addressCustomPaymentToken(address(this)) == address(0)
+            ? oraclize.getPrice(_datasource)
+            : 0;
         if (price > 1 ether + tx.gasprice * 200000) {
             return 0; // Note: Return 0 due to unexpectedly high price
         }
@@ -1596,7 +1614,9 @@ contract usingOraclize {
         internal
         returns (bytes32 _id)
     {
-        uint256 price = oraclize.getPrice(_datasource);
+        uint256 price = oraclize.addressCustomPaymentToken(address(this)) == address(0)
+            ? oraclize.getPrice(_datasource)
+            : 0;
         if (price > 1 ether + tx.gasprice * 200000) {
             return 0; // Note: Return 0 due to unexpectedly high price
         }
@@ -1625,7 +1645,9 @@ contract usingOraclize {
         internal
         returns (bytes32 _id)
     {
-        uint256 price = oraclize.getPrice(_datasource);
+        uint256 price = oraclize.addressCustomPaymentToken(address(this)) == address(0)
+            ? oraclize.getPrice(_datasource)
+            : 0;
         if (price > 1 ether + tx.gasprice * 200000) {
             return 0; // Note: Return 0 due to unexpectedly high price
         }
@@ -1654,7 +1676,9 @@ contract usingOraclize {
         internal
         returns (bytes32 _id)
     {
-        uint256 price = oraclize.getPrice(_datasource);
+        uint256 price = oraclize.addressCustomPaymentToken(address(this)) == address(0)
+            ? oraclize.getPrice(_datasource)
+            : 0;
         if (price > 1 ether + tx.gasprice * 200000) {
             return 0; // Note: Return 0 due to unexpectedly high price
         }
@@ -1684,7 +1708,9 @@ contract usingOraclize {
         internal
         returns (bytes32 _id)
     {
-        uint256 price = oraclize.getPrice(_datasource, _gasLimit);
+        uint256 price = oraclize.addressCustomPaymentToken(address(this)) == address(0)
+            ? oraclize.getPrice(_datasource, _gasLimit)
+            : 0;
         if (price > 1 ether + tx.gasprice * _gasLimit) {
             return 0; // Note: Return 0 due to unexpectedly high price
         }
@@ -1715,7 +1741,9 @@ contract usingOraclize {
         internal
         returns (bytes32 _id)
     {
-        uint256 price = oraclize.getPrice(_datasource, _gasLimit);
+        uint256 price = oraclize.addressCustomPaymentToken(address(this)) == address(0)
+            ? oraclize.getPrice(_datasource, _gasLimit)
+            : 0;
         if (price > 1 ether + tx.gasprice * _gasLimit) {
             return 0; // Note: Return 0 due to unexpectedly high price
         }
@@ -1745,7 +1773,9 @@ contract usingOraclize {
         internal
         returns (bytes32 _id)
     {
-        uint256 price = oraclize.getPrice(_datasource, _gasLimit);
+        uint256 price = oraclize.addressCustomPaymentToken(address(this)) == address(0)
+            ? oraclize.getPrice(_datasource, _gasLimit)
+            : 0;
         if (price > 1 ether + tx.gasprice * _gasLimit) {
             return 0; // Note: Return 0 due to unexpectedly high price
         }
@@ -1775,7 +1805,9 @@ contract usingOraclize {
         internal
         returns (bytes32 _id)
     {
-        uint256 price = oraclize.getPrice(_datasource, _gasLimit);
+        uint256 price = oraclize.addressCustomPaymentToken(address(this)) == address(0)
+            ? oraclize.getPrice(_datasource, _gasLimit)
+            : 0;
         if (price > 1 ether + tx.gasprice * _gasLimit) {
             return 0; // Note: Return 0 due to unexpectedly high price
         }
@@ -1803,7 +1835,9 @@ contract usingOraclize {
         internal
         returns (bytes32 _id)
     {
-        uint256 price = oraclize.getPrice(_datasource);
+        uint256 price = oraclize.addressCustomPaymentToken(address(this)) == address(0)
+            ? oraclize.getPrice(_datasource)
+            : 0;
         if (price > 1 ether + tx.gasprice * 200000) {
             return 0; // Note: Return 0 due to unexpectedly high price
         }
@@ -1830,7 +1864,9 @@ contract usingOraclize {
         internal
         returns (bytes32 _id)
     {
-        uint256 price = oraclize.getPrice(_datasource);
+        uint256 price = oraclize.addressCustomPaymentToken(address(this)) == address(0)
+            ? oraclize.getPrice(_datasource)
+            : 0;
         if (price > 1 ether + tx.gasprice * 200000) {
             return 0; // Note: Return 0 due to unexpectedly high price
         }
@@ -1858,7 +1894,9 @@ contract usingOraclize {
         internal
         returns (bytes32 _id)
     {
-        uint256 price = oraclize.getPrice(_datasource);
+        uint256 price = oraclize.addressCustomPaymentToken(address(this)) == address(0)
+            ? oraclize.getPrice(_datasource)
+            : 0;
         if (price > 1 ether + tx.gasprice * 200000) {
             return 0; // Note: Return 0 due to unexpectedly high price
         }
@@ -1886,7 +1924,9 @@ contract usingOraclize {
         internal
         returns (bytes32 _id)
     {
-        uint256 price = oraclize.getPrice(_datasource);
+        uint256 price = oraclize.addressCustomPaymentToken(address(this)) == address(0)
+            ? oraclize.getPrice(_datasource)
+            : 0;
         if (price > 1 ether + tx.gasprice * 200000) {
             return 0; // Note: Return 0 due to unexpectedly high price
         }
@@ -1915,7 +1955,9 @@ contract usingOraclize {
         internal
         returns (bytes32 _id)
     {
-        uint256 price = oraclize.getPrice(_datasource, _gasLimit);
+        uint256 price = oraclize.addressCustomPaymentToken(address(this)) == address(0)
+            ? oraclize.getPrice(_datasource, _gasLimit)
+            : 0;
         if (price > 1 ether + tx.gasprice * _gasLimit) {
             return 0; // Note: Return 0 due to unexpectedly high price
         }
@@ -1945,7 +1987,9 @@ contract usingOraclize {
         internal
         returns (bytes32 _id)
     {
-        uint256 price = oraclize.getPrice(_datasource, _gasLimit);
+        uint256 price = oraclize.addressCustomPaymentToken(address(this)) == address(0)
+            ? oraclize.getPrice(_datasource, _gasLimit)
+            : 0;
         if (price > 1 ether + tx.gasprice * _gasLimit) {
             return 0; // Note: Return 0 due to unexpectedly high price
         }
@@ -1974,7 +2018,9 @@ contract usingOraclize {
         internal
         returns (bytes32 _id)
     {
-        uint256 price = oraclize.getPrice(_datasource, _gasLimit);
+        uint256 price = oraclize.addressCustomPaymentToken(address(this)) == address(0)
+            ? oraclize.getPrice(_datasource, _gasLimit)
+            : 0;
         if (price > 1 ether + tx.gasprice * _gasLimit) {
             return 0; // Note: Return 0 due to unexpectedly high price
         }
@@ -2003,7 +2049,9 @@ contract usingOraclize {
         internal
         returns (bytes32 _id)
     {
-        uint256 price = oraclize.getPrice(_datasource, _gasLimit);
+        uint256 price = oraclize.addressCustomPaymentToken(address(this)) == address(0)
+            ? oraclize.getPrice(_datasource, _gasLimit)
+            : 0;
         if (price > 1 ether + tx.gasprice * _gasLimit) {
             return 0; // Note: Return 0 due to unexpectedly high price
         }
@@ -2031,7 +2079,9 @@ contract usingOraclize {
         internal
         returns (bytes32 _id)
     {
-        uint256 price = oraclize.getPrice(_datasource);
+        uint256 price = oraclize.addressCustomPaymentToken(address(this)) == address(0)
+            ? oraclize.getPrice(_datasource)
+            : 0;
         if (price > 1 ether + tx.gasprice * 200000) {
             return 0; // Note: Return 0 due to unexpectedly high price
         }
@@ -2058,7 +2108,9 @@ contract usingOraclize {
         internal
         returns (bytes32 _id)
     {
-        uint256 price = oraclize.getPrice(_datasource);
+        uint256 price = oraclize.addressCustomPaymentToken(address(this)) == address(0)
+            ? oraclize.getPrice(_datasource)
+            : 0;
         if (price > 1 ether + tx.gasprice * 200000) {
             return 0; // Note: Return 0 due to unexpectedly high price
         }
@@ -2086,7 +2138,9 @@ contract usingOraclize {
         internal
         returns (bytes32 _id)
     {
-        uint256 price = oraclize.getPrice(_datasource);
+        uint256 price = oraclize.addressCustomPaymentToken(address(this)) == address(0)
+            ? oraclize.getPrice(_datasource)
+            : 0;
         if (price > 1 ether + tx.gasprice * 200000) {
             return 0; // Note: Return 0 due to unexpectedly high price
         }
@@ -2114,7 +2168,9 @@ contract usingOraclize {
         internal
         returns (bytes32 _id)
     {
-        uint256 price = oraclize.getPrice(_datasource);
+        uint256 price = oraclize.addressCustomPaymentToken(address(this)) == address(0)
+            ? oraclize.getPrice(_datasource)
+            : 0;
         if (price > 1 ether + tx.gasprice * 200000) {
             return 0; // Note: Return 0 due to unexpectedly high price
         }
@@ -2143,7 +2199,9 @@ contract usingOraclize {
         internal
         returns (bytes32 _id)
     {
-        uint256 price = oraclize.getPrice(_datasource, _gasLimit);
+        uint256 price = oraclize.addressCustomPaymentToken(address(this)) == address(0)
+            ? oraclize.getPrice(_datasource, _gasLimit)
+            : 0;
         if (price > 1 ether + tx.gasprice * _gasLimit) {
             return 0; // Note: Return 0 due to unexpectedly high price
         }
@@ -2173,7 +2231,9 @@ contract usingOraclize {
         internal
         returns (bytes32 _id)
     {
-        uint256 price = oraclize.getPrice(_datasource, _gasLimit);
+        uint256 price = oraclize.addressCustomPaymentToken(address(this)) == address(0)
+            ? oraclize.getPrice(_datasource, _gasLimit)
+            : 0;
         if (price > 1 ether + tx.gasprice * _gasLimit) {
             return 0; // Note: Return 0 due to unexpectedly high price
         }
@@ -2202,7 +2262,9 @@ contract usingOraclize {
         internal
         returns (bytes32 _id)
     {
-        uint256 price = oraclize.getPrice(_datasource, _gasLimit);
+        uint256 price = oraclize.addressCustomPaymentToken(address(this)) == address(0)
+            ? oraclize.getPrice(_datasource, _gasLimit)
+            : 0;
         if (price > 1 ether + tx.gasprice * _gasLimit) {
             return 0; // Note: Return 0 due to unexpectedly high price
         }
@@ -2231,7 +2293,9 @@ contract usingOraclize {
         internal
         returns (bytes32 _id)
     {
-        uint256 price = oraclize.getPrice(_datasource, _gasLimit);
+        uint256 price = oraclize.addressCustomPaymentToken(address(this)) == address(0)
+            ? oraclize.getPrice(_datasource, _gasLimit)
+            : 0;
         if (price > 1 ether + tx.gasprice * _gasLimit) {
             return 0; // Note: Return 0 due to unexpectedly high price
         }
